@@ -1,5 +1,3 @@
 resources/mysql/
 resources/logs/
-src/public/uploads/*
-!src/public/uploads/statics/*
 .env
