@@ -1,0 +1,72 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: C:\Users\alber\winsel
+      dockerfile: PHP-Dockerfile
+      args: 
+        PHP_TAG: ${PHP_TAG}
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      APP_URL: ${BACK_HOST}:${BACK_PORT}
+    ports: 
+      - "9000:9000"
+    working_dir: /var/www
+    volumes:
+      - ${SRC_FOLDER}:/var/www:cached
+      - ./resources/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - front-network
+
+  #Nginx Service
+  back:
+    image: nginx:${NGINX_TAG}
+    container_name: back
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${BACK_PORT}:80"
+    volumes:
+      - ${SRC_FOLDER}:/var/www:cached
+      - ./resources/nginx:/etc/nginx/conf.d/
+      - ./resources/logs:/var/log/nginx/
+    networks:
+      - front-network
+
+  #MySQL Service
+  db:
+    image: mysql:${MYSQL_TAG}
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${DB_PORT}:3306"
+    environment:
+      MYSQL_DATABASE: challenge
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./resources/mysql:/var/lib/mysql/
+    networks:
+      - front-network
+
+  #Composer Service 
+  composer:
+    image: composer:${COMPOSER_TAG}
+    container_name: composer
+    volumes:
+      - ./src:/app
+    networks:
+      - front-network
+
+networks:
+  front-network:

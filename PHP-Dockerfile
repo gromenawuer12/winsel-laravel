@@ -1,0 +1,13 @@
+ARG PHP_TAG
+
+FROM php:$PHP_TAG
+
+WORKDIR /var/www
+
+RUN apk add --no-cache libpng libpng-dev && docker-php-ext-install gd && apk del libpng-dev
+
+RUN docker-php-ext-install opcache
+RUN docker-php-ext-install pdo pdo_mysql
+ADD src /var/www
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R 755 /var/www/storage
