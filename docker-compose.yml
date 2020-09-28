@@ -11,10 +11,6 @@ services:
     container_name: app
     restart: unless-stopped
     tty: true
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      APP_URL: ${BACK_HOST}:${BACK_PORT}
     ports: 
       - "9000:9000"
     working_dir: /var/www
@@ -48,7 +44,7 @@ services:
     ports:
       - "${DB_PORT}:3306"
     environment:
-      MYSQL_DATABASE: challenge
+      MYSQL_DATABASE: winsel
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: secret
