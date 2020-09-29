@@ -23,21 +23,4 @@ class LoginController extends Controller
             return redirect()->intended('login');
         }
     }
-
-    /*
-    public function authenticate(LoginRequest $request)
-    {
-        $validated = $request->validated();
-
-        $credentials = $request->only('name', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('home'); 
-        }
-        else{
-            return redirect()->intended('login');
-        }
-    }
-    */
 }
