@@ -19,10 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/login','login')->name('login');
+Route::view('/login', 'login')->name('login');
 
-Route::post('/loginController', [LoginController::class,'authenticate']);
+Route::post('/loginController', LoginController::class);
 
-Route::view('/home','home')->middleware('auth');
+Route::view('/home', 'home')->middleware('auth');
 
-Route::get('/logout', [LogoutController::class,'logout']);
+Route::get('/logout', LogoutController::class);
