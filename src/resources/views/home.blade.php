@@ -1,12 +1,13 @@
-<html>
+@extends('layouts.app')
 
-<head>
-    <title>Home</title>
-</head>
+@section('title','Home')
 
-<body>
-    <h1>Hello!</h1>
-    <a href="{{ url('/logout') }}">Logout</a>
-</body>
-
-</html>
+@section('content')
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-primary" href="{{ url('/logout') }}">Logout</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h1>Hello!</h1>
+    </div>
+    
+@endsection
