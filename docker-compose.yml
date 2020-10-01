@@ -4,13 +4,15 @@ services:
   #PHP Service
   app:
     build:
-      context: C:\Users\alber\winsel
+      context: ${CONTEXT_FOLDER}
       dockerfile: PHP-Dockerfile
       args: 
         PHP_TAG: ${PHP_TAG}
     container_name: app
     restart: unless-stopped
     tty: true
+    environment: 
+      APP_URL: ${APP_URL}
     ports: 
       - "9000:9000"
     working_dir: /var/www
@@ -62,6 +64,15 @@ services:
     volumes:
       - ./src:/app
     networks:
+      - front-network
+
+  #Selenium Service
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: selenium
+    ports:
+      - "4444:4444"
+    networks: 
       - front-network
 
 networks:
