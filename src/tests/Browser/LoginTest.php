@@ -10,6 +10,14 @@ use Tests\Browser\Pages\Home;
 
 class LoginTest extends DuskTestCase
 {
+    use DatabaseMigrations;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
+
     /**
      * A basic browser test example.
      *

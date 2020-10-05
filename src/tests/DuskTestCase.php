@@ -29,6 +29,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver()
     {
+        $remote_url = env('REMOTE_URL');
         $options = (new ChromeOptions)->addArguments([
             '--disable-gpu',
             '--headless',
@@ -36,7 +37,7 @@ abstract class DuskTestCase extends BaseTestCase
         ]);
 
         return RemoteWebDriver::create(
-            'http://selenium:4444/wd/hub',
+            $remote_url,
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY,
                 $options
