@@ -14,7 +14,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['name' => $validated['username'], 'password' => $validated['password']])) {
             // Authentication passed...
-            return redirect()->intended('home');
+            return redirect()->intended('homeController');
         } else {
             return redirect()->intended('login');
         }

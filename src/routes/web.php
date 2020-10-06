@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::post('/loginController', LoginController::class);
 Route::view('/home', 'home')->middleware('auth');
 
 Route::get('/logout', LogoutController::class);
+
+Route::get('/homeController', HomeController::class)->name('homeController');
