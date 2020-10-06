@@ -12,9 +12,7 @@ class LoginController extends Controller
     {
         $validated = $request->validated();
 
-        $credentials = $request->only('username', 'password');
-
-        if (Auth::attempt(['name' => $credentials['username'], 'password' => $credentials['password']])) {
+        if (Auth::attempt(['name' => $validated['username'], 'password' => $validated['password']])) {
             // Authentication passed...
             return redirect()->intended('home');
         } else {
