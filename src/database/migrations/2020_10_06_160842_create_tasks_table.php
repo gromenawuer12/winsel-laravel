@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->timestamp('start');
             $table->time('duration');
             $table->foreignId('task_type_id')->constrained('task_types');
-            $table->string('description');
+            $table->string('description', 150);
         });
     }
 

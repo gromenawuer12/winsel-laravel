@@ -15,7 +15,7 @@ class CreateTasktypeTable extends Migration
     {
         Schema::create('task_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 20);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateTasktypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasktype');
+        Schema::dropIfExists('task_types');
     }
 }
