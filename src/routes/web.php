@@ -16,16 +16,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::view('/login', 'login')->name('login');
 
 Route::post('/loginController', LoginController::class);
 
-Route::view('/home', 'home')->middleware('auth');
-
 Route::get('/logout', LogoutController::class);
 
-Route::get('/homeController', HomeController::class)->name('homeController');
+Route::get('/', HomeController::class)->middleware('auth');

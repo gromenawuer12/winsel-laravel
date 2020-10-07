@@ -10,6 +10,11 @@ class Task extends Model
 {
     use HasFactory;
 
+    public function taskType()
+    {
+        return $this->belongsTo(TaskType::class);
+    }
+
     public static function scopeTasks($query)
     {
         return $query->where('user_id', '=', Auth::id());

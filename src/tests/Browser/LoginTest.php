@@ -30,7 +30,7 @@ class LoginTest extends DuskTestCase
                 ->type('@username', 'winsel')
                 ->type('@password', 'winsel')
                 ->press('Submit')
-                ->assertPathIs('/homeController');
+                ->assertPathIs('/');
         });
     }
     public function testLoginFail()
@@ -51,7 +51,7 @@ class LoginTest extends DuskTestCase
                 ->type('@username', 'winsel')
                 ->type('@password', 'winsel')
                 ->press('Submit')
-                ->assertPathIs('/homeController')
+                ->assertPathIs('/')
                 ->on(new Home)
                 ->press('@logout')
                 ->assertPathIs('/login');

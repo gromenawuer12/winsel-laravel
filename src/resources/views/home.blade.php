@@ -14,18 +14,18 @@
         <tr>
             <th scope="col">start</th>
             <th scope="col">duration</th>
-            <th scope="col">taskType</th>
+            <th scope="col">type</th>
             <th scope="col">description</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            @foreach($taskList as $column)
-                <td class="start">{{ $column->start }}</td>
-                <td class="duration">{{ $column->duration }}</td>
-                <td class="taskType">{{ $column->taskType }}</td>
-                <td class="description">{{ $column->description }}</td>
-            @endforeach
+        @foreach($taskList as $task)
+            <tr>
+                <td class="start">{{ $task->start }}</td>
+                <td class="duration">{{ $task->duration }}</td>
+                <td class="taskType">{{ $task->taskType->name }}</td>
+                <td class="description">{{ $task->description }}</td>
+        @endforeach
         </tr>
     </tbody>
 </table>

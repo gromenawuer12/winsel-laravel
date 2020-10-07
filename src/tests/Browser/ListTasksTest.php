@@ -30,7 +30,7 @@ class ListTasksTest extends DuskTestCase
                 ->type('@username', 'winsel')
                 ->type('@password', 'winsel')
                 ->press('Submit')
-                ->assertPathIs('/homeController')
+                ->assertPathIs('/')
                 ->on(new Home)
                 ->assertVisible('@start')
                 ->assertVisible('@duration')

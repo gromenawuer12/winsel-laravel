@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->timestamp('start');
             $table->time('duration');
-            $table->enum('taskType', ['work', 'leisure']);
+            $table->foreignId('task_type_id')->constrained('task_types');
             $table->string('description');
         });
     }
