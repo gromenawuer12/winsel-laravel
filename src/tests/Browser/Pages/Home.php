@@ -13,7 +13,7 @@ class Home extends Page
      */
     public function url()
     {
-        return '/home';
+        return '/';
     }
 
     /**
@@ -36,6 +36,10 @@ class Home extends Page
     {
         return [
             '@logout' => 'a[name=logout]',
+            '@start' => '.start',
+            '@duration' => '.duration',
+            '@taskType' => '.taskType',
+            '@description' => '.description',
         ];
     }
 }

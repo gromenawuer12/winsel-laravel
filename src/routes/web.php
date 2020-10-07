@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,10 @@ use App\Http\Controllers\LogoutController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::view('/login', 'login')->name('login');
 
 Route::post('/loginController', LoginController::class);
 
-Route::view('/home', 'home')->middleware('auth');
-
 Route::get('/logout', LogoutController::class);
+
+Route::get('/', HomeController::class)->middleware('auth');
