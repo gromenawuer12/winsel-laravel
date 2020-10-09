@@ -32,10 +32,10 @@ class ListTasksTest extends DuskTestCase
                 ->press('Submit')
                 ->assertPathIs('/')
                 ->on(new Home)
-                ->assertVisible('@start')
-                ->assertVisible('@duration')
-                ->assertVisible('@taskType')
-                ->assertVisible('@description');
+                ->assertVisible('#start')
+                ->assertVisible('#duration')
+                ->assertVisible('#taskType')
+                ->assertVisible('#description');
         });
     }
 }
