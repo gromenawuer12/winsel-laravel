@@ -11,6 +11,7 @@ class CreateController extends Controller
     public function __invoke(TaskRequest $request)
     {
         $validated = $request->validated();
+
         DB::table('tasks')->insert([
             'start' => $validated['start'],
             'duration' => $validated['duration'],
@@ -18,6 +19,7 @@ class CreateController extends Controller
             'description' => $validated['description'],
             'user_id' => Auth::id(),
         ]);
+
         return redirect('/');
     }
 }

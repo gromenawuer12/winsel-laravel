@@ -36,14 +36,12 @@ class CreateTasksTest extends DuskTestCase
                 ->press('@newtask')
                 ->waitForLocation('/create')
                 ->on(new Create)
-                //->type('@start', "2020-10-09T21:25:49");
-                ->script("document.querySelector('input[name=start]').value = '2020-10-09T21:25:49'");
-            $browser->type('@duration', "01:34:41")
-                ->select('@taskType', 'work')
-                ->type('@description', 'This is a new task')
+                ->value('@start', '2020-10-10T11:11:11')
+                ->value('@duration', '01:01:01')
+                ->select('@taskType', 'Work')
+                ->type('@description', 'Hello')
                 ->press('Create')
-                ->assertPathIs('/')
-                ->on(new Home)
+                ->waitForLocation('/')
                 ->assertVisible('#task-11');
         });
     }
@@ -60,13 +58,18 @@ class CreateTasksTest extends DuskTestCase
                 ->press('@newtask')
                 ->waitForLocation('/create')
                 ->on(new Create)
-                ->type('@start', 'fail')
+                ->script(
+                    "document.getElementById('start').type = 'text';
+                    document.getElementById('duration').type = 'text';
+                    document.getElementById('taskType').options[0].value = 'fail';"
+                );
+            $browser->type('@start', 'fail')
                 ->type('@duration', 'fail')
-                ->select('@taskType', 'fail')
-                ->type('@description', '')
+                ->value('@description', '<>!_-')
                 ->press('Create')
                 ->assertVisible('#errorstart')
                 ->assertVisible('#errorduration')
+                ->assertVisible('#errortaskType')
                 ->assertVisible('#errordescription');
         });
     }
@@ -83,13 +86,14 @@ class CreateTasksTest extends DuskTestCase
                 ->press('@newtask')
                 ->waitForLocation('/create')
                 ->on(new Create)
-                ->type('@start', '')
-                ->type('@duration', '')
-                ->select('@taskType', '')
+                ->value('@start', '')
+                ->value('@duration', '')
+                ->value('@taskType', '')
                 ->type('@description', '')
                 ->press('Create')
                 ->assertVisible('#errorstart')
                 ->assertVisible('#errorduration')
+                ->assertVisible('#errortaskType')
                 ->assertVisible('#errordescription');
         });
     }

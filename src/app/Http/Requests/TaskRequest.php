@@ -23,12 +23,11 @@ class TaskRequest extends FormRequest
      */
     public function rules()
     {
-        info(request()->input('start'));
         return [
             'start' => 'required|date_format:Y-m-d\TH:i:s',
             'duration' => 'required|date_format:H:i:s',
             'taskType' => 'required|numeric',
-            'description' => 'required|string|max:150',
+            'description' => 'required|alpha_num|max:150',
         ];
     }
 }
