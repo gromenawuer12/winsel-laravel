@@ -26,8 +26,8 @@
                 <td>{{ $task->duration }}</td>
                 <td>{{ $task->taskType->name }}</td>
                 <td>{{ $task->description }}</td>
+            </tr>
         @endforeach
-        </tr>
     </tbody>
 </table>
 @endsection

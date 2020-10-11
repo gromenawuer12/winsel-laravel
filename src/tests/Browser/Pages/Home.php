@@ -36,7 +36,11 @@ class Home extends Page
     {
         return [
             '@logout' => 'a[name=logout]',
-            '@newtask' => 'a[name=newtask]'
+            '@newtask' => 'a[name=newtask]',
+            '@start' => '#start',
+            '@duration' => '#duration',
+            '@taskType' => '#taskType',
+            '@description' => '#description',
         ];
     }
 }
