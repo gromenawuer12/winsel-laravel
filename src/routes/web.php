@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CreateController;
+use App\Http\Controllers\DeleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::get('/', HomeController::class)->middleware('auth');
 Route::view('/create', 'tasks.create')->name('create')->middleware('auth');
 
 Route::post('/createController', CreateController::class)->middleware('auth');
+Route::get('/deleteController', DeleteController::class)->middleware('auth');
