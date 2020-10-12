@@ -9,24 +9,25 @@
 <div class="d-flex justify-content-center">
     <h1>Hello!</h1>
 </div>
+<a name="newtask" class="btn btn-primary" href="{{ url('/create') }}">New Task</a>
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">start</th>
-            <th scope="col">duration</th>
-            <th scope="col">type</th>
-            <th scope="col">description</th>
+            <th id="start" scope="col">start</th>
+            <th id="duration" scope="col">duration</th>
+            <th id="taskType" scope="col">type</th>
+            <th id="description" scope="col">description</th>
         </tr>
     </thead>
     <tbody>
         @foreach($taskList as $task)
-            <tr>
-                <td class="start">{{ $task->start }}</td>
-                <td class="duration">{{ $task->duration }}</td>
-                <td class="taskType">{{ $task->taskType->name }}</td>
-                <td class="description">{{ $task->description }}</td>
+            <tr id="task-{{ $task->id }}">
+                <td>{{ $task->start }}</td>
+                <td>{{ $task->duration }}</td>
+                <td>{{ $task->taskType->name }}</td>
+                <td>{{ $task->description }}</td>
+            </tr>
         @endforeach
-        </tr>
     </tbody>
 </table>
 @endsection
