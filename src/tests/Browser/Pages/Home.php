@@ -41,7 +41,7 @@ class Home extends Page
             '@duration' => '#duration',
             '@taskType' => '#taskType',
             '@description' => '#description',
-            '@delete' => 'a[name=delete]',
+            '@delete' => 'button[name=delete]',
         ];
     }
 }

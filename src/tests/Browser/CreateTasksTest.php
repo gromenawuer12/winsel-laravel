@@ -34,7 +34,7 @@ class CreateTasksTest extends DuskTestCase
                 ->waitForLocation('/')
                 ->on(new Home)
                 ->press('@newtask')
-                ->waitForLocation('/create')
+                ->waitForLocation('/tasks/create')
                 ->on(new Create)
                 ->value('@start', '2020-10-10T11:11:11')
                 ->value('@duration', '01:01:01')
@@ -56,7 +56,7 @@ class CreateTasksTest extends DuskTestCase
                 ->waitForLocation('/')
                 ->on(new Home)
                 ->press('@newtask')
-                ->waitForLocation('/create')
+                ->waitForLocation('/tasks/create')
                 ->on(new Create)
                 ->script(
                     "document.getElementById('start').type = 'text';
@@ -84,7 +84,7 @@ class CreateTasksTest extends DuskTestCase
                 ->waitForLocation('/')
                 ->on(new Home)
                 ->press('@newtask')
-                ->waitForLocation('/create')
+                ->waitForLocation('/tasks/create')
                 ->on(new Create)
                 ->value('@start', '')
                 ->value('@duration', '')
@@ -108,7 +108,7 @@ class CreateTasksTest extends DuskTestCase
                 ->waitForLocation('/')
                 ->on(new Home)
                 ->press('@newtask')
-                ->waitForLocation('/create')
+                ->waitForLocation('/tasks/create')
                 ->on(new Create)
                 ->press('@cancel')
                 ->assertPathIs('/');

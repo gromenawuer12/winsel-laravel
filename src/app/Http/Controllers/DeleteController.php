@@ -9,7 +9,7 @@ class DeleteController extends Controller
 {
     public function __invoke(Request $request)
     {
-        DB::table('tasks')->where('id', '=', $request->input('task'))->delete();
+        DB::table('tasks')->where('id', '=', $request->input('id'))->delete();
         return redirect('/');
     }
 }
