@@ -13,7 +13,7 @@ class Create extends Page
      */
     public function url()
     {
-        return '/create';
+        return '/tasks/create';
     }
 
     /**
