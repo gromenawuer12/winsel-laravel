@@ -6,6 +6,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,5 @@ Route::view('/tasks/create', 'tasks.create')->middleware('auth');
 Route::post('/tasks', CreateController::class)->name('create')->middleware('auth');
 
 Route::delete('/tasks', DeleteController::class)->name('delete')->middleware('auth');
+
+Route::match(['post', 'get'], '/tasks/schedule', ScheduleController::class)->middleware('auth');
