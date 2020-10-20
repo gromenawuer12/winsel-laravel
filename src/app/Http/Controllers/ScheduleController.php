@@ -14,7 +14,7 @@ class ScheduleController extends Controller
         $next = '';
         $previous = '';
 
-        if ($request->all()) {
+        if ($request->only(['previous', 'search', 'next'])) {
             $action = $request->only(['previous', 'search', 'next']);
             $index = array_keys($action);
 

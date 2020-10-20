@@ -3,15 +3,20 @@
 @section('title','Home')
 
 @section('content')
+<h1 class="d-flex justify-content-center">Schedule</h1>
 <form method="POST" action="/tasks/schedule">
     @csrf
-    <button id="previous" name="previous" type="submit" class="btn btn-primary"
-        value="{{ $dates[0] }}">&lt;</button>
-    <div class="form-group">
+    <div class="d-flex justify-content-between mb-3">
+
+        <button id="previous" name="previous" type="submit" class="btn btn-primary"
+            value="{{ $dates[0] }}">&lt;</button>
+
         <input id="date" name="date" type="date" value="{{ $dates[1] }}" onChange="onChangeDate()">
+        <button id="search" name="search" style="display:none" class="btn btn-primary"
+            value="{{ $dates[1] }}">Search</button>
+
+        <button id="next" name=" next" type="submit" class="btn btn-primary" value="{{ $dates[2] }}">&gt;</button>
     </div>
-    <button id="search" name="search" type="submit" class="btn btn-primary" value="{{ $dates[1] }}">Search</button>
-    <button id="next" name=" next" type="submit" class="btn btn-primary" value="{{ $dates[2] }}">&gt;</button>
 </form>
 <table class="table">
     <thead>
@@ -38,6 +43,7 @@
     const onChangeDate = () => {
         {
             document.getElementById('search').value = document.getElementById('date').value;
+            $(search).click();
         }
     };
 
