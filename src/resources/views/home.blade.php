@@ -10,6 +10,7 @@
     <h1>Hello!</h1>
 </div>
 <a name="newtask" class="btn btn-primary" href="{{ url('/tasks/create') }}">New Task</a>
+<a name="schedule" class="btn btn-primary" href="{{ url('/tasks/schedule') }}">Schedule</a>
 <table class="table">
     <thead>
         <tr>
