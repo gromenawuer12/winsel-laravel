@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -38,9 +39,11 @@ class ScheduleTest extends DuskTestCase
                 ->press('@schedule')
                 ->waitForLocation('/tasks/schedule')
                 ->on(new Schedule)
-                ->value('@search', '2020-10-07')
-                ->press('Search')
-                ->waitForLocation('/tasks/schedule')
+                ->script([
+                    "document.getElementById('search').value = '2020-10-07';
+                    $(search).click();",
+                ]);
+            $browser->waitForLocation('/tasks/schedule')
                 ->assertPathIs('/tasks/schedule')
                 ->assertVisible('@task');
         });
@@ -61,7 +64,7 @@ class ScheduleTest extends DuskTestCase
             $next = $browser->value('@next');
             $browser->press('>')
                 ->waitForLocation('/tasks/schedule')
-                ->assertValue('@search', $next);
+                ->assertValue('@date', $next);
         });
     }
 
@@ -80,7 +83,7 @@ class ScheduleTest extends DuskTestCase
             $previous = $browser->value('@previous');
             $browser->press('<')
                 ->waitForLocation('/tasks/schedule')
-                ->assertValue('@search', $previous);
+                ->assertValue('@date', $previous);
         });
     }
 }

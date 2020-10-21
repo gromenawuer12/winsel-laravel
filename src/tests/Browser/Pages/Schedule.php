@@ -35,7 +35,7 @@ class Schedule extends Page
     public function elements()
     {
         return [
-            '@search' => 'button[name=search]',
+            '@date' => 'input[name=date]',
             '@task' => '#task-10',
             '@previous' => '#previous',
             '@next' => '#next',
