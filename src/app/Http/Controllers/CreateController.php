@@ -16,12 +16,14 @@ class CreateController extends Controller
         $validated = $request->validated();
         $weather = null;
 
-        if (Carbon::now()->addDays(5)->gte(Carbon::parse($validated['start']))) {
+        if (
+            Carbon::now()->addDays(5)->gte(Carbon::parse($validated['start'])) &&
+            Carbon::now()->lte(Carbon::parse($validated['start']))
+        ) {
             $response = Http::get(env('WEATHER_URL'));
             if ($response->successful()) {
 
                 $response = $response->json();
-
                 $i = 0;
 
                 while ($i < count($response['list']) - 1) {
@@ -31,9 +33,12 @@ class CreateController extends Controller
                     ) {
                         $weather = $response['list'][$i]['weather'][0]['main'];
                         $i = count($response['list']);
+                    } else {
+                        $weather = $response['list'][0]['weather'][0]['main'];
                     }
                     $i++;
                 }
+
                 $weather = WeatherTask::weatherId($weather);
             }
         }

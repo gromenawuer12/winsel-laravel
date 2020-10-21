@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -36,11 +37,11 @@ class CreateTasksTest extends DuskTestCase
                 ->press('@newtask')
                 ->waitForLocation('/create')
                 ->on(new Create)
-                ->value('@start', '2020-10-10T11:11:11')
+                ->value('@start', Carbon::now()->format('Y-m-d\TH:i:s'))
                 ->value('@duration', '01:01:01')
                 ->select('@taskType', 'Work')
                 ->type('@description', 'Hello')
-                ->press('Create')
+                ->press('@create')
                 ->waitForLocation('/')
                 ->assertVisible('#task-11');
         });
@@ -66,7 +67,7 @@ class CreateTasksTest extends DuskTestCase
             $browser->type('@start', 'fail')
                 ->type('@duration', 'fail')
                 ->value('@description', '<>!_-')
-                ->press('Create')
+                ->press('@create')
                 ->assertVisible('#errorstart')
                 ->assertVisible('#errorduration')
                 ->assertVisible('#errortaskType')
@@ -90,7 +91,7 @@ class CreateTasksTest extends DuskTestCase
                 ->value('@duration', '')
                 ->value('@taskType', '')
                 ->type('@description', '')
-                ->press('Create')
+                ->press('@create')
                 ->assertVisible('#errorstart')
                 ->assertVisible('#errorduration')
                 ->assertVisible('#errortaskType')

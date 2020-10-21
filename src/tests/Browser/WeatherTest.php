@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -27,8 +28,9 @@ class WeatherTest extends DuskTestCase
      *
      * @return void
      */
-    public function testWeatherTaskSuccess()
+    public function testWeatherTaskFail6DaysMore()
     {
+
         $this->browse(function (Browser $browser) {
             $browser->visit(new Login)
                 ->type('@username', 'winsel')
@@ -39,22 +41,22 @@ class WeatherTest extends DuskTestCase
                 ->press('@newtask')
                 ->waitForLocation('/create')
                 ->on(new Create)
-                ->value('@start', '2020-10-20T00:00:00')
+                ->value('@start', Carbon::now()->addDays(6)->format('Y-m-d\TH:i:s'))
                 ->value('@duration', '01:01:01')
                 ->select('@taskType', 'Work')
                 ->type('@description', 'Hello')
-                ->press('Create')
+                ->press('@create')
                 ->waitForLocation('/')
                 ->assertVisible('#task-11');
         });
-        if (Task::findOrFail(11)->weather_task_id) {
+        if (empty(Task::findOrFail(11)->weather_task_id)) {
             echo "Worked!!";
         } else {
             echo "Error!!";
         }
     }
 
-    public function testWeatherTaskFail()
+    public function testWeatherTaskFailLessNow()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit(new Login)
@@ -66,11 +68,11 @@ class WeatherTest extends DuskTestCase
                 ->press('@newtask')
                 ->waitForLocation('/create')
                 ->on(new Create)
-                ->value('@start', '2010-10-10T00:00:00')
+                ->value('@start', Carbon::now()->subDays(6)->format('Y-m-d\TH:i:s'))
                 ->value('@duration', '01:01:01')
                 ->select('@taskType', 'Work')
                 ->type('@description', 'Hello')
-                ->press('Create')
+                ->press('@create')
                 ->waitForLocation('/')
                 ->assertVisible('#task-11');
         });
