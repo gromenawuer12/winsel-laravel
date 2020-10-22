@@ -17,8 +17,8 @@ class CreateController extends Controller
         $weather = null;
 
         if (
-            Carbon::now()->addDays(5)->gte(Carbon::parse($validated['start'])) &&
-            Carbon::now()->lte(Carbon::parse($validated['start']))
+            Carbon::now()->addDays(5)->startOfDay()->gte(Carbon::parse($validated['start'])->startOfDay()) &&
+            Carbon::now()->startOfDay()->lte(Carbon::parse($validated['start'])->startOfDay())
         ) {
             $response = Http::get(env('WEATHER_URL'));
             if ($response->successful()) {
