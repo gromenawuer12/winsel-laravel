@@ -40,6 +40,7 @@ class Create extends Page
             '@taskType' => 'select[name=taskType]',
             '@description' => 'input[name=description]',
             '@cancel' => 'a[name=cancel]',
+            '@create' => '#create'
         ];
     }
 }

@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->time('duration');
             $table->foreignId('task_type_id')->constrained('task_types');
             $table->string('description', 150);
+            $table->foreignId('weather_task_id')->nullable()->constrained('weather_tasks');
         });
     }
 

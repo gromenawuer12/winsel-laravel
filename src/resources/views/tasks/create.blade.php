@@ -39,7 +39,7 @@
             <div id="errordescription" class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
-    <button name="create" type="submit" class="btn btn-primary">Create</button>
+    <button id="create" name="create" type="submit" class="btn btn-primary">Create</button>
     <a name="cancel" class="btn btn-primary" href="{{ url('/') }}">Cancel</a>
 </form>
 @endsection
