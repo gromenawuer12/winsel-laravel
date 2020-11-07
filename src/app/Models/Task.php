@@ -23,4 +23,10 @@ class Task extends Model
     {
         return $query->whereBetween('start', [$date . " 00:00:00", $date . " 23:59:59"]);
     }
+    public static function scopeDurationWeather($query, $weather, $year, $month)
+    {
+        return $query->whereYear('start', $year)->whereMonth('start', $month)
+            ->where('weather_task_id', $weather)->selectRaw('task_type_id,
+            SUM(TIME_TO_SEC(duration)) AS time')->groupBy('task_type_id');
+    }
 }

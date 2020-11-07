@@ -4,7 +4,7 @@ namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
 
-class Home extends Page
+class Chart extends Page
 {
     /**
      * Get the URL for the page.
@@ -13,7 +13,7 @@ class Home extends Page
      */
     public function url()
     {
-        return '/';
+        return '/tasks/chart';
     }
 
     /**
@@ -35,15 +35,7 @@ class Home extends Page
     public function elements()
     {
         return [
-            '@logout' => 'a[name=logout]',
-            '@newtask' => 'a[name=newtask]',
-            '@start' => '#start',
-            '@duration' => '#duration',
-            '@taskType' => '#taskType',
-            '@description' => '#description',
-            '@delete' => 'button[name=delete]',
-            '@schedule' => 'a[name=schedule]',
-            '@chart' => 'a[name=chart]',
+            '@chart' => '#chart',
         ];
     }
 }
