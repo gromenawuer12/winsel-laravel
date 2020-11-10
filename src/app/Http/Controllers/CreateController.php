@@ -20,26 +20,28 @@ class CreateController extends Controller
             Carbon::now()->addDays(5)->startOfDay()->gte(Carbon::parse($validated['start'])->startOfDay()) &&
             Carbon::now()->startOfDay()->lte(Carbon::parse($validated['start'])->startOfDay())
         ) {
-            $response = Http::get(env('WEATHER_URL'));
-            if ($response->successful()) {
+            if (env('WEATHER_URL') != null) {
+                $response = Http::get(env('WEATHER_URL'));
+                if ($response->successful()) {
 
-                $response = $response->json();
-                $i = 0;
+                    $response = $response->json();
+                    $i = 0;
 
-                while ($i < count($response['list']) - 1) {
-                    if (
-                        strtotime($validated['start']) >= $response['list'][$i]['dt'] &&
-                        strtotime($validated['start']) < $response['list'][$i + 1]['dt']
-                    ) {
-                        $weather = $response['list'][$i]['weather'][0]['main'];
-                        $i = count($response['list']);
-                    } else {
-                        $weather = $response['list'][0]['weather'][0]['main'];
+                    while ($i < count($response['list']) - 1) {
+                        if (
+                            strtotime($validated['start']) >= $response['list'][$i]['dt'] &&
+                            strtotime($validated['start']) < $response['list'][$i + 1]['dt']
+                        ) {
+                            $weather = $response['list'][$i]['weather'][0]['main'];
+                            $i = count($response['list']);
+                        } else {
+                            $weather = $response['list'][0]['weather'][0]['main'];
+                        }
+                        $i++;
                     }
-                    $i++;
-                }
 
-                $weather = WeatherTask::weatherId($weather);
+                    $weather = WeatherTask::weatherId($weather);
+                }
             }
         }
 

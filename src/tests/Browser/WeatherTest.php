@@ -45,7 +45,6 @@ class WeatherTest extends DuskTestCase
                 ->value('@duration', '01:01:01')
                 ->select('@taskType', 'Work')
                 ->type('@description', 'Hello')
-                ->screenshot('add1')
                 ->press('@create')
                 ->waitForLocation('/')
                 ->assertVisible('#task-11');
