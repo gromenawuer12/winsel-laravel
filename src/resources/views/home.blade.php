@@ -11,6 +11,7 @@
 </div>
 <a name="newtask" class="btn btn-primary" href="{{ url('/tasks/create') }}">New Task</a>
 <a name="schedule" class="btn btn-primary" href="{{ url('/tasks/schedule') }}">Schedule</a>
+<a name="chart" class="btn btn-primary" href="{{ url('/tasks/chart') }}">Chart</a>
 <table class="table">
     <thead>
         <tr>

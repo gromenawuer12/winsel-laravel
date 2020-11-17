@@ -85,6 +85,27 @@ class TaskSeeder extends Seeder
                 'description' => 'This is a description.',
                 'user_id' => 1,
                 'weather_task_id' => null,
+            ], [
+                'start' => '2020-10-20 11:34:21',
+                'duration' => '00:33:48',
+                'task_type_id' => 2,
+                'description' => 'This is a description.',
+                'user_id' => 1,
+                'weather_task_id' => 1,
+            ], [
+                'start' => '2020-10-21 11:34:21',
+                'duration' => '01:43:48',
+                'task_type_id' => 1,
+                'description' => 'This is a description.',
+                'user_id' => 1,
+                'weather_task_id' => 1,
+            ], [
+                'start' => '2020-10-22 11:34:21',
+                'duration' => '01:00:48',
+                'task_type_id' => 1,
+                'description' => 'This is a description.',
+                'user_id' => 1,
+                'weather_task_id' => 1,
             ]
         ]);
     }
