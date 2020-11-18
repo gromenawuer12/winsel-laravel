@@ -3,9 +3,7 @@
 @section('title','Home')
 
 @section('content')
-<div class="d-flex justify-content-end">
-    <a id="home" name="home" class="btn btn-primary" href="{{ url('/') }}">Home</a>
-</div>
+
 <h1 class="d-flex justify-content-center">Schedule</h1>
 <form method="POST" action="/tasks/schedule">
     @csrf

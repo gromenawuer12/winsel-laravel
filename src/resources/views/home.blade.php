@@ -3,22 +3,18 @@
 @section('title','Home')
 
 @section('content')
-<div class="d-flex justify-content-end">
-    <a id="logout" name="logout" class="btn btn-primary" href="{{ url('/logout') }}">Logout</a>
-</div>
+
 <div class="d-flex justify-content-center">
     <h1>Hello!</h1>
 </div>
-<a name="newtask" class="btn btn-primary" href="{{ url('/tasks/create') }}">New Task</a>
-<a name="schedule" class="btn btn-primary" href="{{ url('/tasks/schedule') }}">Schedule</a>
-<a name="chart" class="btn btn-primary" href="{{ url('/tasks/chart') }}">Chart</a>
+
 <table class="table">
     <thead>
         <tr>
-            <th id="start" scope="col">start</th>
-            <th id="duration" scope="col">duration</th>
-            <th id="taskType" scope="col">type</th>
-            <th id="description" scope="col">description</th>
+            <th id="start" scope="col">Start</th>
+            <th id="duration" scope="col">Duration</th>
+            <th id="taskType" scope="col">Type</th>
+            <th id="description" scope="col">Description</th>
             <th></th>
         </tr>
     </thead>
@@ -30,16 +26,40 @@
                 <td>{{ $task->taskType->name }}</td>
                 <td>{{ $task->description }}</td>
                 <td>
-                    <form
-                        action="{{ route('delete',['id' => $task->id]) }}"
-                        method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button name="delete" class="btn btn-danger" type="submit">X</button>
-                    </form>
+                    <button type="button" name="deleteTask" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                        X
+                    </button>
                 </td>
             </tr>
         @endforeach
     </tbody>
 </table>
+
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to delete the task?
+        </div>
+        <div class="modal-footer">
+          <button name="cancelModal" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <form
+                name="delete-task"
+                action="{{ route('delete',['id' => 'substitute']) }}"
+                method="POST">
+                @method('DELETE')
+                @csrf
+                <button name="delete" class="btn btn-danger" type="submit">Delete Task</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endsection

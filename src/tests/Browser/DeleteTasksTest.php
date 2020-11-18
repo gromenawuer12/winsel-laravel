@@ -22,6 +22,23 @@ class DeleteTasksTest extends DuskTestCase
      *
      * @return void
      */
+    public function testCancelDeleteTask()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit(new Login)
+                ->type('@username', 'winsel')
+                ->type('@password', 'winsel')
+                ->press('Submit')
+                ->assertPathIs('/')
+                ->on(new Home)
+                ->assertVisible('#task-1') 
+                ->press('@deleteTask')
+                ->waitForText('Are you sure')
+                ->press('@cancel')
+                ->assertVisible('#task-1');
+        });
+    }
+
     public function testDeleteTask()
     {
         $this->browse(function (Browser $browser) {
@@ -31,7 +48,9 @@ class DeleteTasksTest extends DuskTestCase
                 ->press('Submit')
                 ->assertPathIs('/')
                 ->on(new Home)
-                ->assertVisible('#task-1')
+                ->assertVisible('#task-1') 
+                ->press('@deleteTask')
+                ->waitForText('Are you sure')
                 ->press('@delete')
                 ->assertMissing('#task-1');
         });

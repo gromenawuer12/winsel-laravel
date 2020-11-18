@@ -33,17 +33,6 @@
         </select>
         </div>
         <div class="form-group">
-        <select id="weather" name="weather" class="form-control @error('weather') is-invalid @enderror">
-            <option value="1" selected>Clear</option>
-            <option value="2">Thunderstorm</option>
-            <option value="3">Drizzle</option>
-            <option value="4">Rain</option>
-            <option value="5">Snow</option>
-            <option value="6">Atmosphere</option>
-            <option value="7">Clouds</option>
-        </select>
-        </div>
-        <div class="form-group">
         <button id="search" name="search" class="btn btn-primary">Search</button>
         </div>
     </div>
