@@ -13,10 +13,10 @@ class ChartController extends Controller
         $now = Carbon::now();
         $chart = [];
 
-        if (!empty($request->input('weather')) && !empty($request->input('year')) && !empty($request->input('month'))) {
-            $query = Task::durationWeather($request->input('weather'), $request->input('year'), $request->input('month'))->get();
+        if (!empty($request->input('year')) && !empty($request->input('month'))) {
+            $query = Task::durationWeather($request->input('year'), $request->input('month'))->get();
         } else {
-            $query = Task::durationWeather(4, $now->year, $now->month)->get();
+            $query = Task::durationWeather($now->year, $now->month)->get();
         }
 
         if (!$query->isEmpty()) {
